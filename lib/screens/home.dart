@@ -23,7 +23,8 @@ class _nextPage extends State<nextPage> {
     print('cancel streammm');
   }
 
-  void connectUser(String song, String idOfMatchUser, final docSnapshot) {
+  void connectUser(String song, String idOfMatchUser, final docSnapshot) async {
+    await Future.delayed(Duration(milliseconds: 1500));
     if (docSnapshot.exists) {
       print("doc exsist");
       print("heyy " + song);
@@ -39,17 +40,11 @@ class _nextPage extends State<nextPage> {
           alreadyPressed = false;
         });
         return;
-      } else if (docSnapshot.data().containsKey('denayPress')) {
-        print("denay press");
-        dispose();
-        setState(() {
-          alreadyPressed = false;
-        });
-        return;
       }
     } else {
       //if user not responding
       print("doc not exsist");
+      dispose();
       setState(() {
         alreadyPressed = false;
       });
@@ -61,16 +56,12 @@ class _nextPage extends State<nextPage> {
     setState(() {
       alreadyPressed = true;
     });
-    print(alreadyPressed);
-    print('text is ' + song);
     bool findMatch = false;
     String idOfMatchUser =
         " "; //  מוצא את הID של היוזר שהוא רוצה לשלוח אליו הודעה
     final userDocSnapshot =
         await FirebaseFirestore.instance.collection('users').get();
     final allDocs = userDocSnapshot.docs.toList();
-    print("all docs:");
-    print(allDocs);
     allDocs.forEach((doc) {
       if (doc.id != userID) {
         if (doc.get('song1') == song) {

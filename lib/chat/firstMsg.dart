@@ -30,7 +30,7 @@ class firstConnection extends StatelessWidget {
               docs.forEach(
                 (document) {
                   if (document.id == userID) {
-                    Timer(Duration(minutes: 1), () {
+                    final tt = new Timer(Duration(minutes: 1), () {
                       FirebaseFirestore.instance
                           .collection('chats')
                           .doc(userID)
@@ -66,6 +66,7 @@ class firstConnection extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () async {
+                                  tt.cancel();
                                   String userID2 = "";
                                   final chatDocSnapshot =
                                       await FirebaseFirestore.instance
@@ -94,6 +95,7 @@ class firstConnection extends StatelessWidget {
                               ),
                               ElevatedButton(
                                 onPressed: () async {
+                                  tt.cancel();
                                   await FirebaseFirestore.instance
                                       .collection('chats')
                                       .doc(userID)

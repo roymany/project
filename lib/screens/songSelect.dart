@@ -21,8 +21,19 @@ class SongSelectionPageState extends State<SongSelectionPage> {
   var songToUploadController = TextEditingController();
 
   String filterText = '';
+  String key = "my_Project_123";
+
+  String xor_dec_enc(String text) {
+    List<int> encrypted = [];
+    for (int i = 0; i < text.length; i++) {
+      int charCode = text.codeUnitAt(i) ^ key.codeUnitAt(i % key.length);
+      encrypted.add(charCode);
+    }
+    return String.fromCharCodes(encrypted);
+  }
 
   void uploadSong(String songToUpload) {
+    songToUpload = xor_dec_enc(songToUpload);
     var channel = IOWebSocketChannel.connect("ws://10.100.102.25:8820");
     channel.sink.add(songToUpload);
     channel.sink.close();
