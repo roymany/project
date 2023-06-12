@@ -7,7 +7,8 @@ import 'package:main_project/screens/songSelect.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class singUpPage extends StatelessWidget {
-  singUpPage();
+  String ip;
+  singUpPage(this.ip);
   @override
   var myControllerName = TextEditingController();
   var myControllerUserName = TextEditingController();
@@ -76,7 +77,7 @@ class singUpPage extends StatelessWidget {
         // ignore: use_build_context_synchronously
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SongSelectionPage()),
+          MaterialPageRoute(builder: (context) => SongSelectionPage(ip)),
         );
       }
     }
@@ -158,7 +159,7 @@ class singUpPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage(ip)),
                   );
                 },
                 child: Text('Log In'),

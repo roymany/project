@@ -20,14 +20,11 @@ class chatScreeen extends StatefulWidget {
 }
 
 class _chatScreeenState extends State<chatScreeen> {
-  Timer _timer;
   final String userID1;
   final String userID2;
   final String song;
   AudioPlayer _audioPlayer = AudioPlayer();
   int totalDuration;
-  Duration myDuration = Duration(days: 5);
-  Timer countdownTimer;
   _chatScreeenState(this.userID1, this.userID2, this.song);
 
   @override

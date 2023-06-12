@@ -6,6 +6,8 @@ import 'package:main_project/screens/singUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget {
+  String ip;
+  LoginPage(this.ip);
   UserCredential authResult;
   var myControllerName = TextEditingController();
   var myControllerPassword = TextEditingController();
@@ -110,7 +112,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => singUpPage()),
+                      MaterialPageRoute(builder: (context) => singUpPage(ip)),
                     );
                   },
                   child: Text('Sign Up'),

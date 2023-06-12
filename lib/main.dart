@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:main_project/screens/login.dart';
+import 'package:main_project/screens/chooseIP.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Music Love',
-      home: LoginPage(),
+      home: ServerIpScreen(),
     );
   }
 }

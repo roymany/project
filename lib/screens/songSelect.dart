@@ -7,13 +7,15 @@ import 'package:web_socket_channel/io.dart';
 
 class SongSelectionPage extends StatefulWidget {
   @override
-  SongSelectionPage();
+  String ip;
+  SongSelectionPage(this.ip);
 
-  SongSelectionPageState createState() => SongSelectionPageState();
+  SongSelectionPageState createState() => SongSelectionPageState(this.ip);
 }
 
 class SongSelectionPageState extends State<SongSelectionPage> {
-  SongSelectionPageState();
+  String ip;
+  SongSelectionPageState(this.ip);
 
   List<String> allSongs = [];
 
@@ -34,7 +36,7 @@ class SongSelectionPageState extends State<SongSelectionPage> {
 
   void uploadSong(String songToUpload) {
     songToUpload = xor_dec_enc(songToUpload);
-    var channel = IOWebSocketChannel.connect("ws://10.100.102.25:8820");
+    var channel = IOWebSocketChannel.connect("ws://" + ip + ":8820");
     channel.sink.add(songToUpload);
     channel.sink.close();
   }
